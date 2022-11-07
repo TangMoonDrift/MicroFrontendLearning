@@ -1,0 +1,20 @@
+{
+	"name": "container",
+	"version": "1.0.0",
+	"description": "",
+	"main": "./src/main.ts",
+	"scripts": {
+		"start": "cross-env-shell NODE_ENV=development webpack-dev-server --config config/webpack.config.js",
+		"build": "cross-env-shell NODE_ENV=production webpack --config config/webpack.config.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-router-dom": "^6.4.3",
+		"redux": "^4.2.0"
+	}
+}
