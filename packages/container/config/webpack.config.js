@@ -1,9 +1,12 @@
+require('dotenv').config()
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin')
 
 const isProd = process.env.NODE_ENV === 'production'
+const baseUrlDevMarketing = process.env.BASE_URL_DEV_MARKETING
+const baseUrlProdMarketing = process.env.BASE_URL_PROD_MARKETING
 
 const getStyleLoaders = (extraLoader) => {
 	return [
@@ -76,9 +79,8 @@ module.exports = {
 		new ModuleFederationPlugin({
 			name: 'container',
 			remotes: {
-				marketing: 'marketing@http://localhost:10086/remoteEntry.js'
+				marketing: `marketing@${ isProd ? baseUrlProdMarketing : baseUrlDevMarketing }`
 			},
-			// shared: ['react', 'react-dom', 'react-router-dom', 'redux']
 			shared: {
 				'react': '^18.2.0',
 				'react-dom': '^18.2.0',

@@ -1,7 +1,7 @@
 export default () => {
 	return (
 		<section>
-			javascript
+			The area of marketing content~
 		</section>
 	)
 }
