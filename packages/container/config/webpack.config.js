@@ -25,11 +25,11 @@ module.exports = {
 	mode: isProd ? 'production' : 'development',
 	entry: './src/main.ts',
 	output: {
-		path: resolve(__dirname, '../dist'),
-		filename: '[name].[chunkhash:5].js',
+		path: isProd ? resolve(__dirname, '../dist') : undefined,
+		filename: '[name].[contenthash:5].js',
 		clean: true
 	},
-	devtool: 'cheap-module-source-map',
+	devtool: isProd ? 'eval' : 'source-map',
 	module: {
 		rules: [
 			{
@@ -78,7 +78,13 @@ module.exports = {
 			remotes: {
 				marketing: 'marketing@http://localhost:10086/remoteEntry.js'
 			},
-			shared: ['react', 'react-dom', 'react-router-dom', 'redux']
+			// shared: ['react', 'react-dom', 'react-router-dom', 'redux']
+			shared: {
+				'react': '^18.2.0',
+				'react-dom': '^18.2.0',
+				'react-router-dom': '^6.4.3',
+				'redux': '^4.2.0'
+			}
 		})
 	],
 	devServer: {
