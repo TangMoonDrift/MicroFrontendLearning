@@ -1,7 +1,7 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './app'
-import './styles/global.styl'
+import './styles/global.module.styl'
 
 const mount = (el: Element | DocumentFragment) => {
 	if (el) {

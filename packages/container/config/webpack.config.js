@@ -11,7 +11,14 @@ const baseUrlProdMarketing = process.env.BASE_URL_PROD_MARKETING
 const getStyleLoaders = (extraLoader) => {
 	return [
 		MiniCssExtractPlugin.loader,
-		'css-loader',
+		{
+			loader: 'css-loader',
+			options: {
+				modules: {
+					localIdentName: '[local]_[hash:base64:8]'
+				}
+			}
+		},
 		{
 			loader: 'postcss-loader',
 			options: {
@@ -62,7 +69,7 @@ module.exports = {
 				include: [resolve(__dirname, '../src')]
 			},
 			{
-				test: /\.styl$/i,
+				test: /\.module\.styl$/i,
 				use: getStyleLoaders('stylus-loader'),
 				include: [resolve(__dirname, '../src')]
 			}

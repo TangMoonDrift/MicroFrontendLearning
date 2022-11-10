@@ -8,7 +8,14 @@ const isProd = process.env.NODE_ENV === 'production'
 const getStyleLoaders = (extraLoader) => {
 	return [
 		MiniCssExtractPlugin.loader,
-		'css-loader',
+		{
+			loader: 'css-loader',
+			options: {
+				modules: {
+					localIdentName: '[local]_[hash:base64:8]'
+				}
+			}
+		},
 		{
 			loader: 'postcss-loader',
 			options: {
@@ -59,7 +66,7 @@ module.exports = {
 				include: [resolve(__dirname, '../src')]
 			},
 			{
-				test: /\.styl$/i,
+				test: /\.module\.styl$/i,
 				use: getStyleLoaders('stylus-loader'),
 				include: [resolve(__dirname, '../src')]
 			}
@@ -98,7 +105,7 @@ module.exports = {
 		}
 	},
 	resolve: {
-		extensions: ['.jsx', '.js', '.tsx', '.ts', '.json']
+		extensions: ['.jsx', '.js', '.tsx', '.ts', '.json', '.module.styl']
 	},
 	stats: 'errors-only'
 }
